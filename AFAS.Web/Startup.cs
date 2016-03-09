@@ -23,11 +23,11 @@ namespace AFAS.Web
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                // builder.AddUserSecrets();
             }
 
             builder.AddEnvironmentVariables();
-            var config = builder.Build();
+            config = builder.Build();
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940

@@ -90,7 +90,7 @@ gulp.task('copy:templates', function() {
             path: paths.webroot + '/scripts/routes.js',
             root: '.'
         }))
-        .pipe(gulp.dest(paths.webroot + '/templates/'));
+        .pipe(gulp.dest(paths.webroot + '/templates'));
 });
 
 // Compiles the Foundation for Apps directive partials into a single JavaScript file
