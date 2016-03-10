@@ -1,0 +1,40 @@
+---
+name: database
+url: /database
+---
+
+<div class="grid-container">
+    <h3 class="text-center"><strong>RADIO FREQUENCY & SPECTRUM <span class="hilight">DATABASE</span></strong></h3>
+    <hr />
+    <form>
+        <div class="grid-block align-center">
+            <div class="small-1 grid-content v-align align-center">
+                <label>Search</label>
+            </div>
+            <div class="small-3 grid-content">
+                <input type="text" placeholder="all">
+            </div>
+            <div class="small-1 grid-content v-align align-center">
+                <label>Location</label>
+            </div>
+            <div class="small-3 grid-content">
+                <select name="" id="">
+                    <option value="">anywhere</option>
+                    <option value="">Bangkok</option>
+                    <option value="">Ratchaburi</option>
+                    <option value="">Korat</option>
+                </select>
+            </div>
+            <div class="small-1 grid-content">
+                <a href="#" class="button">search</a>
+            </div>
+        </div>
+    </form>
+    <p class="text-center">Total <b>124</b> frequencies. <b>51</b> frequencies assigned to <b>100</b> radio equipments.</p>
+    <p class="text-center">
+        <a class="hilight" href="">Add</a> new radios or locations.<br />
+        <a class="hilight" href="">Assign</a> or <a class="hilight" href="">reuse</a> more frequencies to existing radio equipments.
+    </p>
+    <hr />
+    <div data-ng-include="'./partials/station-table.html'" />
+</div>

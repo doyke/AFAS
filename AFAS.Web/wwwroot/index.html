@@ -1,33 +1,31 @@
 <!doctype html>
 <html lang="en" data-ng-app="application">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Foundation for Apps</title>
-        <link href="./styles/app.css" rel="stylesheet" type="text/css">
-        <script src="./scripts/foundation.js"></script>
-        <script src="./scripts/templates.js"></script>
-        <script src="./scripts/routes.js"></script>
-        <script src="./scripts/app.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="primary menu-group">
-                <div class="menu-group-left">
-                </div>
-                <div class="menu-group-right">
-                </div>
-                <div class="menu-group-right">
-                    <ul class="primary condense menu-bar">
-                        <li><a href="#"><strong>Home</strong></a></li>
-                        <li><a href="#"><strong>Allocation</strong></a></li>
-                        <li><a href="#"><strong>Database</strong></a></li>
-                    </ul>
-                </div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frequency and Spectrum Management Server</title>
+    <link href="./styles/app.css" rel="stylesheet" type="text/css">
+    <script src="./scripts/foundation.js"></script>
+    <script src="./scripts/templates.js"></script>
+    <script src="./scripts/routes.js"></script>
+    <script src="./scripts/app.js"></script>
+</head>
+<body>
+    <header>
+        <div class="primary menu-group">
+            <div class="menu-group-left">
             </div>
-        </header>
-        <div class="grid-frame vertical">
-            <div ui-view class="grid-content" />
+            <div class="menu-group-right">
+                <ul class="primary condense menu-bar">
+                    <li><a href="#"><b>home</b></a></li>
+                    <li><a href="#"><b>chart</b></a></li>
+                    <li><a href="/#/database"><b>database</b></a></li>
+                </ul>
+            </div>
         </div>
-    </body>
+    </header>
+    <div class="grid-frame vertical">
+        <div ui-view class="grid-content" />
+    </div>
+</body>
 </html>

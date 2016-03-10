@@ -23,6 +23,9 @@ var paths = {
         base: [
             './*.html'
         ],
+        partials: [
+            './partials/**/*.html'
+        ],
         templates: [
             './templates/**/*.html'
         ]
@@ -81,6 +84,11 @@ gulp.task('copy', function () {
     return gulp.src(paths.html.base)
         //.pipe(minHtml())
         .pipe(gulp.dest(paths.webroot));
+});
+
+gulp.task('copy:partials', function () {
+    return gulp.src(paths.html.partials)
+        .pipe(gulp.dest(paths.webroot + '/partials'));
 });
 
 // Copies your app's page templates and generates URLs for them
@@ -190,7 +198,7 @@ gulp.task('js:app', function () {
 gulp.task('server:development', ['build'], function () {
     gulp.src(paths.webroot)
         .pipe($.webserver({
-            port: 8079,
+            port: 8078,
             host: 'localhost',
             fallback: 'index.html',
             livereload: true,
@@ -212,24 +220,29 @@ gulp.task('server:production', ['deploy'], function () {
 // Builds your entire app once, without starting a server
 gulp.task('build', function (cb) {
     //sequence('clean', ['copy', 'copy:foundation', 'sass', 'uglify'], 'copy:templates', cb);
-    sequence('clean', ['copy', 'copy:foundation', 'sass', 'js'], 'copy:templates', cb);
+    sequence('clean', ['copy', 'copy:partials', 'copy:foundation', 'sass', 'js'], 'copy:templates', cb);
 });
 
 gulp.task('deploy', function (cb) {
     sequence('setenv:prod', 'build', cb);
 });
 
-// Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['server:development'], function () {
+gulp.task('watch', function () {
     // watch sass
-    gulp.watch(['./styles/scss/**/*', './scss/**/*'], ['sass']);
+    gulp.watch(['./styles/**/*.scss'], ['sass']);
 
     // watch javascript
     gulp.watch(['./app/**/*', './js/**/*'], ['js:app']);
 
     // watch static files
-    gulp.watch(['./**/*.*', '!./templates/**/*.*', '!./{styles,app}/**/*.*'], ['copy']);
+    gulp.watch(['./**/*.html', '!./partials/**/*.*', '!./templates/**/*.*', '!./{styles,app}/**/*.*'], ['copy']);
 
     // watch app templates
     gulp.watch(['./templates/**/*.html'], ['copy:templates']);
+
+    // watch partials
+    gulp.watch(['./partials/**/*.html'], ['copy:partials']);
 });
+
+// Default task: builds your app, starts a server, and recompiles assets when they change
+gulp.task('default', ['server:development', 'watch']);
