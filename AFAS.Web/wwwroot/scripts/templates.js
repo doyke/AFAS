@@ -61,16 +61,6 @@ angular.module('foundation').run(['$templateCache', function($templateCache) {
 }]);
 
 angular.module('foundation').run(['$templateCache', function($templateCache) {
-  $templateCache.put('components/offcanvas/offcanvas.html',
-    '<div\n' +
-    '  class="off-canvas {{ position }}"\n' +
-    '  ng-class="{\'is-active\': active}"\n' +
-    '  ng-transclude>\n' +
-    '</div>\n' +
-    '');
-}]);
-
-angular.module('foundation').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/notification/notification-set.html',
     '<div class="notification-container {{position}}">\n' +
     '  <zf-notification ng-repeat="notification in notifications"\n' +
@@ -118,12 +108,29 @@ angular.module('foundation').run(['$templateCache', function($templateCache) {
 }]);
 
 angular.module('foundation').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/offcanvas/offcanvas.html',
+    '<div\n' +
+    '  class="off-canvas {{ position }}"\n' +
+    '  ng-class="{\'is-active\': active}"\n' +
+    '  ng-transclude>\n' +
+    '</div>\n' +
+    '');
+}]);
+
+angular.module('foundation').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/panel/panel.html',
     '<div\n' +
     '  class="panel"\n' +
     '  ng-class="positionClass"\n' +
     '  ng-transclude\n' +
     '  >\n' +
+    '</div>\n' +
+    '');
+}]);
+
+angular.module('foundation').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/popup/popup.html',
+    '<div class="popup" ng-class="{\'is-active\': active }" ng-transclude>\n' +
     '</div>\n' +
     '');
 }]);
@@ -158,13 +165,6 @@ angular.module('foundation').run(['$templateCache', function($templateCache) {
     '    target="{{ id }}"\n' +
     '    ng-if="showTabContent">\n' +
     '  </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-
-angular.module('foundation').run(['$templateCache', function($templateCache) {
-  $templateCache.put('components/popup/popup.html',
-    '<div class="popup" ng-class="{\'is-active\': active }" ng-transclude>\n' +
     '</div>\n' +
     '');
 }]);

@@ -220,7 +220,7 @@ gulp.task('deploy', function (cb) {
 });
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['server'], function () {
+gulp.task('default', ['server:development'], function () {
     // watch sass
     gulp.watch(['./styles/scss/**/*', './scss/**/*'], ['sass']);
 
