@@ -9,3 +9,6 @@ app.config(['$locationProvider', function ($locationProvider) {
 }]).run(function () {
     FastClick.attach(document.body);
 });
+app.controller('RadioController', ['$scope', function($scope) {
+	var self = this;
+}]);

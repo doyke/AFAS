@@ -40,6 +40,11 @@ var paths = {
             'bower_components/foundation-apps/scss' // foundation scss
         ]
     },
+    css: {
+        includes: [
+            './styles/**/*.css'
+        ]
+    },
     // Javascript
     javascript: {
         foundation: [ // foundation-apps components
@@ -55,10 +60,11 @@ var paths = {
             '!bower_components/foundation-apps/js/angular/app.js'
         ],
         libs: [ // other bower components
-
+        
         ],
         apps: [ // user's scripts
-            './app/app.js'
+            './app/app.js',
+            './app/radio.js'
         ]
     }
 }
@@ -150,6 +156,20 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(paths.webroot + '/styles/'));
 });
 
+gulp.task('css', function() {
+    var filename = (isProduction) ? 'vendor.min.css' : 'vendor.css';
+    
+    var minify = $.if(isProduction, $.minifyCss()
+    .on('error', function (e) {
+      console.log(e);
+    }));
+    
+    return gulp.src(paths.css.includes)
+        .pipe($.concat(filename))
+        .pipe(minify)
+        .pipe(gulp.dest(paths.webroot + '/styles/'));
+})
+
 gulp.task('js', ['js:foundation', 'js:lib', 'js:app'])
 
 gulp.task('js:foundation', function (cb) {
@@ -220,7 +240,7 @@ gulp.task('server:production', ['deploy'], function () {
 // Builds your entire app once, without starting a server
 gulp.task('build', function (cb) {
     //sequence('clean', ['copy', 'copy:foundation', 'sass', 'uglify'], 'copy:templates', cb);
-    sequence('clean', ['copy', 'copy:partials', 'copy:foundation', 'sass', 'js'], 'copy:templates', cb);
+    sequence('clean', ['copy', 'copy:partials', 'copy:foundation', 'sass', 'css', 'js'], 'copy:templates', cb);
 });
 
 gulp.task('deploy', function (cb) {
@@ -245,4 +265,6 @@ gulp.task('watch', function () {
 });
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['server:development', 'watch']);
+gulp.task('default', ['server:development'], function () {
+    sequence('watch');
+});

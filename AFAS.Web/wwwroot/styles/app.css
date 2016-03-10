@@ -6504,11 +6504,29 @@ blockquote p {
 .float-none {
   float: none; }
 
+header {
+  position: fixed;
+  top: 0px;
+  margin: auto;
+  z-index: 100000;
+  width: 100%; }
+
+table tbody, table thead {
+  display: block;
+  width: 100%; }
+
+table tbody {
+  overflow: auto;
+  height: 500px; }
+
+th {
+  width: auto; }
+
 .menu-group-right {
   padding-right: 50px; }
 
 .grid-content {
-  padding-top: 20px; }
+  padding-top: 80px; }
 
 .hilight {
   color: yellowgreen; }
