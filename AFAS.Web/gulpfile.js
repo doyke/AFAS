@@ -34,15 +34,16 @@ var paths = {
     // Sass will check these folders for files when you use @import.
     sass: {
         base: [
-            './styles/**/*.scss'
+            './styles/**/*.scss',
         ],
         includes: [
-            'bower_components/foundation-apps/scss' // foundation scss
+            'bower_components/foundation-apps/scss', // foundation scss
         ]
     },
     css: {
         includes: [
-            './styles/**/*.css'
+            './styles/**/*.css',
+            'bower_components/open-iconic/font/css/open-iconic-foundation.css' // open-iconic
         ]
     },
     // Javascript
@@ -60,11 +61,15 @@ var paths = {
             '!bower_components/foundation-apps/js/angular/app.js'
         ],
         libs: [ // other bower components
-        
+            'bower_components/d3/d3.js',
+            'bower_components/Geolib/dist/geolib.js'
         ],
         apps: [ // user's scripts
+            './app/model.js',
             './app/app.js',
-            './app/radio.js'
+            './app/mock.js',
+            './app/radio.js',
+            
         ]
     }
 }
@@ -129,6 +134,9 @@ gulp.task('copy:foundation', function (cb) {
     // Iconic SVG icons
     gulp.src('./bower_components/foundation-apps/iconic/**/*')
         .pipe(gulp.dest(paths.webroot + '/img/iconic/'));
+        
+    gulp.src('bower_components/open-iconic/font/fonts/**/*')
+        .pipe(gulp.dest(paths.webroot + '/fonts/'));
 
     cb();
 });

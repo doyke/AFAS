@@ -1,336 +1,58 @@
+<input type="text" placeholder="Filter text" data-ng-model="searchRadio">
 <table class="table table-condensed table-striped table-hover">
-    <caption>Cute Animals Per 1,000 People</caption>
+    <caption>{{ filtered.length }} results found</caption>
     <thead>
         <tr>
-            <th>Frequency</th>
-            <th>Mode</th>
+            <th>
+                <a href="#" data-ng-click="c.sortType = 'frequency'; c.sortReverse = !c.sortReverse">Frequency 
+                    <span data-ng-show="c.sortType == 'frequency' && !c.sortReverse" class="fi-caret-bottom"></span>
+                    <span data-ng-show="c.sortType == 'frequency' && c.sortReverse" class="fi-caret-top"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" data-ng-click="c.sortType = 'ident'; c.sortReverse = !c.sortReverse">Name 
+                    <span data-ng-show="c.sortType == 'ident' && !c.sortReverse" class="fi-caret-bottom"></span>
+                    <span data-ng-show="c.sortType == 'ident' && c.sortReverse" class="fi-caret-top"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" data-ng-click="c.sortType = 'mode'; c.sortReverse = !c.sortReverse">Mode 
+                    <span data-ng-show="c.sortType == 'mode' && !c.sortReverse" class="fi-caret-bottom"></span>
+                    <span data-ng-show="c.sortType == 'mode' && c.sortReverse" class="fi-caret-top"></span>
+                </a>
+            </th>
             <th>Details</th>
-            <th>Location</th>
-            <th>Type</th>
+            <th>Coordinate</th>
+            <th>
+                <a href="#" data-ng-click="c.sortType = 'location'; c.sortReverse = !c.sortReverse">Location 
+                    <span data-ng-show="c.sortType == 'location' && !c.sortReverse" class="fi-caret-bottom"></span>
+                    <span data-ng-show="c.sortType == 'location' && c.sortReverse" class="fi-caret-top"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" data-ng-click="c.sortType = 'type'; c.sortReverse = !c.sortReverse">Type 
+                    <span data-ng-show="c.sortType == 'type' && !c.sortReverse" class="fi-caret-bottom"></span>
+                    <span data-ng-show="c.sortType == 'type' && c.sortReverse" class="fi-caret-top"></span>
+                </a>
+            </th>
             <th>Flag</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
-        </tr>
-        <tr>
-            <td>123.224</td>
-            <td>AM</td>
-            <td>Clock Tower</td>
-            <td>Bangkok</td>
-            <td>TACAN</td>
-            <td>Edit</td>
+        <tr data-ng-repeat="radio in filtered = (c.radios | orderBy:c.sortType:c.sortReverse | filter:searchRadio) ">
+            <td>{{ radio.frequency }}</td>
+            <td>{{ radio.ident }}
+            <td>{{ c.getMode(radio.mode) }}</td>
+            <td>None</td>
+            <td>{{ radio.latitude }}, {{ radio.longitude }}</td>
+            <td>{{ radio.location.name }}</td>
+            <td>{{ c.getType(radio.type) }}</td>
+            <td>
+                <ul class="button-group">
+                    <li><a class="hollow button fi-pencil" title="modify" aria-hidden="true"></a></li>
+                    <li><a class="alert hollow button fi-trash" title="remove" aria-hidden="true"></a></li>
+                </ul>
+            </td>
         </tr>
     </tbody>
 </table>
-<!-- table class="table" / -->

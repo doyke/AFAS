@@ -61,6 +61,16 @@ angular.module('foundation').run(['$templateCache', function($templateCache) {
 }]);
 
 angular.module('foundation').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/offcanvas/offcanvas.html',
+    '<div\n' +
+    '  class="off-canvas {{ position }}"\n' +
+    '  ng-class="{\'is-active\': active}"\n' +
+    '  ng-transclude>\n' +
+    '</div>\n' +
+    '');
+}]);
+
+angular.module('foundation').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/notification/notification-set.html',
     '<div class="notification-container {{position}}">\n' +
     '  <zf-notification ng-repeat="notification in notifications"\n' +
@@ -103,16 +113,6 @@ angular.module('foundation').run(['$templateCache', function($templateCache) {
     '    <h1 ng-bind-html="trustedTitle"></h1>\n' +
     '    <p ng-transclude></p>\n' +
     '  </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-
-angular.module('foundation').run(['$templateCache', function($templateCache) {
-  $templateCache.put('components/offcanvas/offcanvas.html',
-    '<div\n' +
-    '  class="off-canvas {{ position }}"\n' +
-    '  ng-class="{\'is-active\': active}"\n' +
-    '  ng-transclude>\n' +
     '</div>\n' +
     '');
 }]);

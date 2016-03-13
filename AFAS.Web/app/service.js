@@ -1,26 +1,19 @@
 ﻿app.service('afas.service', ['$q', function ($q) {
-
-    this.getNewNode = function (nodes) {
-        console.log("node =" + nodes.length);
-        var NewNodeCount = 0;
-        angular.forEach(nodes, function (value, key) {
-            if (!(value.latitude) || !(value.longitude) || !(value.areaId)) {
-                NewNodeCount++;
-            }
-        });
-        console.log("newNode" + NewNodeCount);
-        return NewNodeCount;
-    }
-
-    this.wgs84Format = function (value) {
-        console.log(value);
-        if (value.degree && value.minute && value.second) {
-            return pad(value.degree) + ' ' + pad(value.minute) + ' ' + pad(value.second) + ' ' + value.direction;
-        }
-        return '';
-    }
-    var pad = function (value) {
-        return (value < 10) ? '0' + value : value;
+    
+    this.getAssignments = function (radios) {
+        if ( !(radios instanceof Array) )
+            throw "An argument is not Array object.";
+        
+        if (!(radios[0] instanceof Radio))
+            throw "An argument is not a Radio object.";
+            
+        var assignments = [];
+            
+        angular.forEach(radios, function(radio, index) {
+            var a = { frequency: radio.frequency, id: radio.id }
+            assignments.push(a);
+        });        
+        return assignments;
     }
     return this;
 }]);
