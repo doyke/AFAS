@@ -2,6 +2,11 @@ app.factory('afas.mock', function () {
     
     var service = {};
     
+    var frequencies = [18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56,
+                       71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+                       91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+                       111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126];
+    
     var locations = [
         new Location(1,'BANGKOK/DONMUENG','VTBD'),
         new Location(2,'BANGKOK/SUVARNABHUMI','VTBS'),
@@ -320,6 +325,11 @@ app.factory('afas.mock', function () {
     radios[103].locates(locations[101]);
     
     var resources = {
+        "frequencies": {
+            get : function () {
+                return frequencies;
+            },
+        },
         "radios": {
             get : function (id) {
                 if (id)

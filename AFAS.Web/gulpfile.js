@@ -68,6 +68,8 @@ var paths = {
             './app/model.js',
             './app/app.js',
             './app/mock.js',
+            './app/service.js',
+            './app/chart-assign.js',
             './app/radio.js',
             
         ]
