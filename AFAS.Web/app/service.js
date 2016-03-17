@@ -45,12 +45,12 @@
         
         cards.enter().append("rect")
             .attr("x", function(d) { 
-                return (d.x - 1) * styles.gridSize; 
+                return (d.x - 1) * styles.gridSize;
             })
             .attr("y", function(d) {
                 return (d.y - 1) * styles.gridSize;
             })
-            .attr("rx", 4).attr("ry", 4)
+            //.attr("rx", 2).attr("ry", 2)
             .attr("class", "x bordered")
             .attr("width", styles.gridSize).attr("height", styles.gridSize)
             .style("fill", styles.colors[0]);
@@ -65,17 +65,17 @@
         });
         
         cards.exit().remove();
-        /*
+        
         var legend = svg.selectAll(".legend")
             .data([0].concat(colorScale.quantiles()), function(d) { 
                 return d;
             });
         
-        legend.enter().append("g").attr("class", "legend");
+        legend.enter().append("g").attr("class", "legend");        
         
         legend.append("rect")
             .attr("x", function(d, i) { return styles.legendElementWidth * i; })
-            .attr("y", styles.height)
+            .attr("y", styles.height + styles.margin.bottom)
             .attr("width", styles.legendElementWidth)
             .attr("height", styles.gridSize / 2)
             .style("fill", function(d, i) { return styles.colors[i]; });
@@ -84,10 +84,10 @@
             .attr("class", "mono")
             .text(function(d) { return "≥ " + Math.round(d); })
             .attr("x", function(d, i) { return styles.legendElementWidth * i; })
-            .attr("y", styles.height + styles.gridSize);
+            .attr("y", styles.height + styles.margin.bottom + styles.gridSize);
         
         legend.exit().remove();
-        */
+        
     };
     
     return this;
