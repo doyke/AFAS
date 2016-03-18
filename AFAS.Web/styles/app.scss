@@ -3,23 +3,31 @@
 
 .header {
     z-index: 200;
-    position: fixed; 
-    top: 0px; 
+    position: fixed;
+    top: 0px;
     left: 0px;
     width: 100%;
 }
 
 .template {
-    margin-top: 70px;
-    margin-left: 10%;
-    margin-right: 10%;
+    display: block;
+    margin: 0 auto;
 }
 .menu-group-right {
     padding-right: 50px;
 }
 
+.menu-group-right ul li {
+    border-left:1px solid #ccc;
+}
+
 .hi-light {
     color: yellowgreen;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
 }
 
 rect.bordered {

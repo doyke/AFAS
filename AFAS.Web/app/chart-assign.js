@@ -1,4 +1,4 @@
-app.controller('AssignmentChartController', ['$scope', 'afas.mock', 'afas.service', function($scope, factory, service) {
+app.controller('AssignmentChartController', ['$scope', '$filter','afas.mock', 'afas.service', function($scope, $filter, factory, service) {
 	var self = this;
     var radios = factory.get("radios");
     var frequencies = factory.get("frequencies");
@@ -6,11 +6,6 @@ app.controller('AssignmentChartController', ['$scope', 'afas.mock', 'afas.servic
     
     var x = frequencies;
     var y = radios;
-    /*
-    var y = radios.map(function (r) {
-        return r.id;
-    });
-    */
     var data = [];
     angular.forEach(radios, function(r, i) {
         angular.forEach(frequencies, function(f, j) {
@@ -19,9 +14,13 @@ app.controller('AssignmentChartController', ['$scope', 'afas.mock', 'afas.servic
         });
     });
     
+    self.totalFrequencies = frequencies.length;
+    self.totalRadios = radios.length;
+    self.usedFrequencies = $filter('filter')(data, { value: 1 }).length;
+    
     //self.print = JSON.stringify(data);
-    var margin = { top: 50, right: 0, bottom: 100, left: 50 }
-    var gridSize = 14;
+    var margin = { top: 70, right: 0, bottom: 0, left: 40 }
+    var gridSize = 12;
     var width = gridSize*x.length - margin.left - margin.right;
     var height = gridSize*y.length - margin.top - margin.bottom;
     var legendElementWidth = gridSize*2;
@@ -30,11 +29,40 @@ app.controller('AssignmentChartController', ['$scope', 'afas.mock', 'afas.servic
     
     var svg = d3.select("#chart-assignment").append("svg")
         .attr("width", width + 2*margin.left + margin.right)
-        .attr("height", height + 2*margin.top + 2*margin.bottom)
-        .append("g")
+        .attr("height", height + 2*margin.top + 2*margin.bottom);
+    
+    var colorScale = d3.scale.quantile()
+            .domain([0, buckets - 1, d3.max(data, function (d) {
+                return d.value;
+            })]).range(colors);
+    
+    var legend = svg.selectAll(".legend")
+            .data([0].concat(colorScale.quantiles()), function(d) { 
+                return d;
+            });
+        
+        legend.enter().append("g").attr("class", "legend");
+        
+        legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * (i); })
+            .attr("y", 0)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+        
+        legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * (i); })
+            .attr("y", 20);
+        
+        legend.exit().remove();
+        
+    var contentGroup = svg.append("g")
+        .attr("class", "group-content")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var radioLabels = svg.selectAll(".label-radio")
+    var radioLabels = contentGroup.selectAll(".label-radio")
         .data(radios)
         .enter().append("text")
             .text(function (d) { return d.ident; })
@@ -44,18 +72,17 @@ app.controller('AssignmentChartController', ['$scope', 'afas.mock', 'afas.servic
             .attr("transform", "translate(-18," + gridSize / 1.5 + ")")
             .attr("class", "mono axis");
 
-    var frequencyLabels = svg.selectAll(".label-frequency")
+    var frequencyLabels = contentGroup.selectAll(".label-frequency")
         .data(x)
         .enter().append("text")
             .text(function(d) { return d; })
             .attr("x", function(d, i) { return (i-1) * gridSize; })
             .attr("y", 0)
-            .style("text-anchor", "middle")
             .attr("transform",function(d, i) { 
-                return "translate(" + (-3 + (i*gridSize)) + "," + (-40 + (i*gridSize)) +") rotate(-90)";
+                return "translate(" + (-3 + (i*gridSize)) + "," + (-30 + (i*gridSize)) +") rotate(-90)";
             })
             .attr("class", "mono axis");
-    
+
     var styles = {
         margin: margin, 
         width: width, height: height, 
@@ -65,6 +92,6 @@ app.controller('AssignmentChartController', ['$scope', 'afas.mock', 'afas.servic
         colors: colors
     };
     
-    service.heatmap(data, svg, radioLabels, frequencyLabels, styles);
+    service.heatmap(data, contentGroup, radioLabels, frequencyLabels, styles);
     
 }]);

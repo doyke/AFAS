@@ -65,29 +65,6 @@
         });
         
         cards.exit().remove();
-        
-        var legend = svg.selectAll(".legend")
-            .data([0].concat(colorScale.quantiles()), function(d) { 
-                return d;
-            });
-        
-        legend.enter().append("g").attr("class", "legend");        
-        
-        legend.append("rect")
-            .attr("x", function(d, i) { return styles.legendElementWidth * i; })
-            .attr("y", styles.height + styles.margin.bottom)
-            .attr("width", styles.legendElementWidth)
-            .attr("height", styles.gridSize / 2)
-            .style("fill", function(d, i) { return styles.colors[i]; });
-        
-        legend.append("text")
-            .attr("class", "mono")
-            .text(function(d) { return "≥ " + Math.round(d); })
-            .attr("x", function(d, i) { return styles.legendElementWidth * i; })
-            .attr("y", styles.height + styles.margin.bottom + styles.gridSize);
-        
-        legend.exit().remove();
-        
     };
     
     return this;
