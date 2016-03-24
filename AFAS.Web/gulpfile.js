@@ -65,6 +65,7 @@ var paths = {
             'bower_components/Geolib/dist/geolib.js'
         ],
         apps: [ // user's scripts
+            './app/heatmaps.js',
             './app/model.js',
             './app/app.js',
             './app/mock.js',

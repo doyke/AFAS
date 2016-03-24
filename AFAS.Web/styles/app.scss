@@ -41,10 +41,32 @@ text.mono {
     fill: #aaa;
 }
 
-text.axis-workweek {
-    fill: #000;
+// Layout
+
+.padding-lr-1 {
+    margin: 0 1%
 }
 
-text.axis-worktime {
-    fill: #000;
+.padding-lr-5 {
+    margin: 0 5%
+}
+
+.padding-lr-10 {
+    margin: 0 10%
+}
+
+.padding-lr-20 {
+    margin: 0 20%
+}
+
+.padding-lr-30 {
+    margin: 0 30%
+}
+
+.padding-lr-40 {
+    margin: 0 40%
+}
+
+.padding-lr-50 {
+    margin: 0 50%
 }

@@ -32,7 +32,7 @@
         return assignments;
     };
     
-    this.heatmap = function (data, svg, xLabels, yLabels, styles) {
+    this.heatmap = function (data, svg, styles) {
         var colorScale = d3.scale.quantile()
             .domain([0, styles.buckets - 1, d3.max(data, function (d) {
                 return d.value;
