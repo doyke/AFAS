@@ -1,4 +1,4 @@
-app.controller('AssignmentChartController', ['$scope', '$filter','afas.mock', 'afas.service', function($scope, $filter, factory, service) {
+app.controller('PlanController', ['$scope', '$filter','afas.mock', 'afas.service', function($scope, $filter, factory, service) {
 	var self = this;
     var radios = factory.get("radios");
     var frequencies = factory.get("frequencies");
@@ -24,5 +24,8 @@ app.controller('AssignmentChartController', ['$scope', '$filter','afas.mock', 'a
         margin: { top: 100, right: 0, bottom: 50, left: 100 },
         colors: ["#eeeeee", "#1e6823"]
     }
-    heatmapV1(xLabels, yLabels, data, "#chart-assignment", config);
+    
+    self.heatmap = function (id) {
+        heatmapV1(xLabels, yLabels, data, id, config);
+    }
 }]);

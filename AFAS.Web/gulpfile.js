@@ -62,15 +62,16 @@ var paths = {
         ],
         libs: [ // other bower components
             'bower_components/d3/d3.js',
-            'bower_components/Geolib/dist/geolib.js'
+            'bower_components/Geolib/dist/geolib.js',
+            './libs/heatmaps.js',
+            './libs/greedy.js'
         ],
         apps: [ // user's scripts
-            './app/heatmaps.js',
             './app/model.js',
             './app/app.js',
             './app/mock.js',
             './app/service.js',
-            './app/chart-assign.js',
+            './app/plan.js',
             './app/radio.js',
             
         ]
