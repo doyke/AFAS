@@ -6,24 +6,51 @@ url: /reservation
 <div class="template padding-lr-5">
     <h3 class="text-center"><strong>RADIO FREQUENCY & SPECTRUM <span class="hi-light">RESERVATION</span></strong></h3>
     <hr />
-    <form>
-        <fieldset>
-            <legend><strong>Physical Description</strong></legend>
-            <div class="small-6 medium-3 large-1 grid-content">
-                <label>Navaids type</label>
-                <select name="" id="">
-                    <option>DME</option>
-                    <option>TACAN</option>
-                    <option>VORTAC</option>
-                    <option>Others</option>
-                </select>
-            </div>
-            <div class="small-12 medium-6 large-3 grid-content">
-                <label>WGS-84 Coordinates</label>
-                <input type="number" placeholder="Latitude">
-                <input type="number" placeholder="Longitude">
-            </div>
-        </fieldset>
-    </form>
+    <div data-ng-controller="ReservationController as c">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ident</th>
+                    <th>Mode</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="r in c.radios">
+                    <td>1</td>
+                    <td><input type="text" data-ng-model="r.ident" /></td>
+                    <td><input type="text" data-ng-model="r.mode" /></td>
+                    <td><input type="number" data-ng-model="r.latitude" /></td>
+                    <td><input type="number" data-ng-model="r.longitude" /></td>
+                    <td><input type="text" data-ng-model="r.type" /></td>
+                    <td>
+                        <a class="button alert fi-delete" title="remove" aria-hidden="true"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" data-ng-init="item.name=''" data-ng-model="item.name" /></td>
+                    <td><input type="text" data-ng-model="item.mode" /></td>
+                    <td><input type="number" data-ng-model="item.latitude" /></td>
+                    <td><input type="number" data-ng-model="item.longitude" /></td>
+                    <td><input type="text" data-ng-model="item.type" /></td>
+                    <td>
+                        <a class="button alert fi-delete" title="remove" aria-hidden="true"></a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody> 
+        </table>
+    </div>
     
+    <div data-ng-controller="TestGreedyController as c">
+        <ul>
+            <li data-ng-repeat="output in c.outputs">{{output}}</li>
+        </ul>
+    </div>
 </div>

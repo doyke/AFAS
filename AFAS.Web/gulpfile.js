@@ -75,6 +75,7 @@ var paths = {
             'app/service.js',
             'app/plan.js',
             'app/radio.js',
+            'app/reservation.js',
             'app/test-greedy.js'
         ]
     }
