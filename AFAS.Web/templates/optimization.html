@@ -1,17 +1,17 @@
 ---
-name: reservation
-url: /reservation
+name: optimization
+url: /optimization
 ---
 
 <div class="template padding-lr-5">
-    <h3 class="text-center"><strong>RADIO FREQUENCY & SPECTRUM <span class="hi-light">RESERVATION</span></strong></h3>
+    <h3 class="text-center"><strong>RADIO FREQUENCY & SPECTRUM <span class="hi-light">OPTIMIZATION</span></strong></h3>
     <hr />
-    <div data-ng-controller="ReservationController as c">
+    <div data-ng-controller="OptimizationController as c">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Ident</th>
+                    <th>No.</th>
+                    <th>Identification</th>
                     <th>Mode</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
@@ -28,7 +28,7 @@ url: /reservation
                     <td><input type="number" data-ng-model="r.longitude" /></td>
                     <td><input type="text" data-ng-model="r.type" /></td>
                     <td>
-                        <a class="button alert fi-delete" title="remove" aria-hidden="true"></a>
+                        <a class="alert hollow button fi-trash" title="cancel" aria-hidden="true"></a>
                     </td>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@ url: /reservation
                     <td><input type="number" data-ng-model="item.longitude" /></td>
                     <td><input type="text" data-ng-model="item.type" /></td>
                     <td>
-                        <a class="button alert fi-delete" title="remove" aria-hidden="true"></a>
+                        <a class="hollow fi-plus" title="add" aria-hidden="true"></a>
                     </td>
                     <td></td>
                     <td></td>
@@ -48,9 +48,9 @@ url: /reservation
         </table>
     </div>
     
-    <div data-ng-controller="TestGreedyController as c">
+    <!-- div data-ng-controller="TestGreedyController as c">
         <ul>
             <li data-ng-repeat="output in c.outputs">{{output}}</li>
         </ul>
-    </div>
+    </div -->
 </div>
