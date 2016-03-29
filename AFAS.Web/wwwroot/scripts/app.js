@@ -46,20 +46,39 @@ Radio.prototype.locates = function locates(loc) {
 }
 
 
-var app = angular.module('afas.app', ['ui.router', 'ngAnimate', 'foundation', 'foundation.dynamicRouting', 'foundation.dynamicRouting.animations']);
+var app = angular.module('afas.app', ['ngRoute']);
 
-app.config(['$locationProvider', function ($locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'templates/home.html'
+            //controller: 'HomeController'
+        })
+        .when('/plan', {
+            templateUrl: 'templates/plan.html'
+        })
+        .when('/optimization', {
+            templateUrl: 'templates/optimization.html'
+        })
+        .when('/database', {
+            templateUrl: 'templates/database.html'
+        })
+        .otherwise({ redirectTo: '/' })
+    /*
     $locationProvider.html5Mode({
-        enabled:false,
+        enabled:true,
         requireBase: false
     });
-
-}]).run(function () {
-    FastClick.attach(document.body);
-});
+    */
+}])
 app.factory('afas.mock', function () {
     
     var service = {};
+    
+    var frequencies = [];
+    
+    for ( var f=18; f<59; f++ ) { frequencies.push(f); }
+    for ( var f=71; f<127; f++ ) { frequencies.push(f); }
     
     var locations = [
         new Location(1,'BANGKOK/DONMUENG','VTBD'),
@@ -379,6 +398,11 @@ app.factory('afas.mock', function () {
     radios[103].locates(locations[101]);
     
     var resources = {
+        "frequencies": {
+            get : function () {
+                return frequencies;
+            },
+        },
         "radios": {
             get : function (id) {
                 if (id)
@@ -419,12 +443,114 @@ app.factory('afas.mock', function () {
     
     return service;
 });
-app.controller('RadioController', ['$scope', 'afas.mock', function($scope, service) {
+app.service('afas.service', ['$q', function ($q) {
+    
+    var findRadios = function (radios, f) {
+        return radios.filter(function(radio) {
+            return radio.frequency === f;
+        })
+    };
+    
+    this.getAssignments = function (radios, frequencies) {
+        if ( !(radios instanceof Array) )
+            throw "An argument is not Array object.";
+        
+        if (!(radios[0] instanceof Radio))
+            throw "An argument is not a Radio object.";
+        
+        var assignments = [];
+        
+        angular.forEach(frequencies, function(f, i) {
+            var results = findRadios(radios, f);
+            var a = {};
+            if (results.length) {
+                angular.forEach(results, function(r, i) {
+                    a = { frequency: r.frequency, radioId: r.id };
+                    assignments.push(a);
+                });
+            } else {
+                a = { frequency: f, radioId: 0 };
+                assignments.push(a);
+            }
+        });
+        
+        return assignments;
+    };
+    
+    this.heatmap = function (data, svg, styles) {
+        var colorScale = d3.scale.quantile()
+            .domain([0, styles.buckets - 1, d3.max(data, function (d) {
+                return d.value;
+            })]).range(styles.colors);
+              
+        var cards = svg.selectAll(".x")
+            .data(data, function(d) {
+                return d.y+':'+d.x;
+            });
+        
+        cards.enter().append("rect")
+            .attr("x", function(d) { 
+                return (d.x - 1) * styles.gridSize;
+            })
+            .attr("y", function(d) {
+                return (d.y - 1) * styles.gridSize;
+            })
+            //.attr("rx", 2).attr("ry", 2)
+            .attr("class", "x bordered")
+            .attr("width", styles.gridSize).attr("height", styles.gridSize)
+            .style("fill", styles.colors[0]);
+        
+        cards.transition().duration(1000)
+            .style("fill", function(d) {
+                return colorScale(d.value);
+            });
+        
+        cards.select("title").text( function(d) {
+            return d.value;
+        });
+        
+        cards.exit().remove();
+    };
+    
+    return this;
+}]);
+app.controller('PlanController', ['$scope', '$filter','afas.mock', 'afas.service', function($scope, $filter, factory, service) {
+	var self = this;
+    var radios = factory.get("radios");
+    var frequencies = factory.get("frequencies");
+    
+    var xLabels = frequencies;
+    var yLabels = radios.map( function (r) {
+        return r.ident;
+    });
+    var data = [];
+    angular.forEach(radios, function(r, i) {
+        angular.forEach(frequencies, function(f, j) {
+            var d = {y: +i, x: +j, value: (r.frequency != f) ? 0 : 1 }
+            data.push(d);
+        });
+    });
+    
+    self.totalFrequencies = frequencies.length;
+    self.totalRadios = radios.length;
+    self.usedFrequencies = $filter('filter')(data, { value: 1 }).length;
+    
+    // Generate a heatmap    
+    var config = {
+        margin: { top: 100, right: 0, bottom: 50, left: 100 },
+        colors: ["#eeeeee", "#1e6823"]
+    }
+    
+    self.heatmap = function (id) {
+        heatmapV1(xLabels, yLabels, data, id, config);
+    }
+}]);
+app.controller('RadioController', ['$scope', 'afas.mock', function($scope, factory) {
 	var self = this;
     self.sortType     = 'frequency'; // set the default sort type
     self.sortReverse  = false;  // set the default sort order
     
-    self.radios = service.get("radios");
+    self.radios = factory.get("radios");
     
     self.getMode = function (value) {
         return Mode.properties[value].name;
@@ -433,4 +559,31 @@ app.controller('RadioController', ['$scope', 'afas.mock', function($scope, servi
     self.getType = function (value) {
         return RadioType.properties[value].name;
     };
+}]);
+app.controller('OptimizationController', ['$scope', 'afas.mock', function($scope, factory) {
+	var self = this;
+    self.radios = [];    
+}]);
+app.controller('TestGreedyController', ['$scope', 'afas.mock', 'afas.service', function($scope, factory, service) {
+	var self = this;
+    self.outputs = [];
+    
+    var gdy = new Greedy();
+    var helper = new TestHelper();    
+    var size = 20;
+    //var data = helper.getSampledData(size*(size-1)/2);
+    var data = [1,0,1,1,0,1,0,1,1,1,0,0,0,1,0,0,1,0,0,1,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,1,1,1,0,0,0,0,1,1,0,1,1,0,1,1,0,0,1,1,1,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,0,1,0,1,0,1,1,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,1,0,0,1,0,1,1,0,0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,0,0,1,1,0,1,1,1,1,0,1,0,0,1,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,1,0,1,1]
+    
+    var A = Array(size).fill(0);
+    var C = gdy.get_compatibility_matrix(data, size);
+    var F = [];
+    var minF = 10, maxF = 100;
+    var cost = 0;
+    
+    while (A.indexOf(0) > -1) {
+        f = helper.getRandomInteger(minF, maxF);
+        F.push(f);
+        cost = gdy.solve(A, C, F);
+        self.outputs.push('Frequencies=[' + F + '], Assignments=[' + A + '], Total cost = '+ cost);
+    }
 }]);

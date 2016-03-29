@@ -1,1 +1,0 @@
-var foundationRoutes = [{"name":"database","url":"/database","path":"templates/database.html"},{"name":"dashboard","url":"/dashboard","path":"templates/dashboard.html"},{"name":"home","url":"/","path":"templates/home.html"}]; 
