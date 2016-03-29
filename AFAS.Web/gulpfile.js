@@ -37,30 +37,27 @@ var paths = {
             './styles/**/*.scss',
         ],
         includes: [
-            'bower_components/foundation-apps/scss', // foundation scss
+            'bower_components/foundation-sites/scss', // foundation scss
+            'bower_components/motion-ui/src'
         ]
     },
     css: {
         includes: [
-            './styles/**/*.css',
+            './styles/**/*.css', // vendor css
             'bower_components/open-iconic/font/css/open-iconic-foundation.css' // open-iconic
         ]
     },
     // Javascript
     javascript: {
-        foundation: [ // foundation-apps components
-            'bower_components/fastclick/lib/fastclick.js',
-            'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js',
-            'bower_components/tether/tether.js',
-            'bower_components/hammerjs/hammer.js',
-            'bower_components/angular/angular.js',
-            'bower_components/angular-animate/angular-animate.js',
-            'bower_components/angular-ui-router/**/*.js',
-            'bower_components/foundation-apps/js/vendor/**/*.js',
-            'bower_components/foundation-apps/js/angular/**/*.js',
-            '!bower_components/foundation-apps/js/angular/app.js'
+        foundation: [ // foundation-sites components
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/what-input/what-input.js',
+            'bower_components/foundation-sites/dist/foundation.js'            
         ],
         libs: [ // other bower components
+            'bower_components/motion-ui/dist/motion-ui.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-route/angular-route.js',
             'bower_components/d3/d3.js',
             'bower_components/Geolib/dist/geolib.js',
             'bower_components/mathjs/dist/math.js',
@@ -99,6 +96,10 @@ gulp.task('clean', function (cb) {
 
 // Copies all htmls in the source folder
 gulp.task('copy', function () {
+    
+    gulp.src('bower_components/open-iconic/font/fonts/**/*')
+        .pipe(gulp.dest(paths.webroot + '/fonts/'));
+    
     return gulp.src(paths.html.base)
         //.pipe(minHtml())
         .pipe(gulp.dest(paths.webroot));
@@ -112,40 +113,7 @@ gulp.task('copy:partials', function () {
 // Copies your app's page templates and generates URLs for them
 gulp.task('copy:templates', function() {
     return gulp.src(paths.html.templates)
-        .pipe(router({
-            path: paths.webroot + '/scripts/routes.js',
-            root: '.'
-        }))
         .pipe(gulp.dest(paths.webroot + '/templates'));
-});
-
-// Compiles the Foundation for Apps directive partials into a single JavaScript file
-gulp.task('copy:foundation', function (cb) {
-    var filename = (isProduction) ? 'templates.min.js' : 'templates.js';
-    
-    var uglify = $.if(isProduction, $.uglify()
-    .on('error', function (e) {
-        console.log(e);
-    }));
-    
-    gulp.src('bower_components/foundation-apps/js/angular/components/**/*.html')
-        .pipe($.ngHtml2js({
-            prefix: 'components/',
-            moduleName: 'foundation',
-            declareModule: false
-        }))
-        .pipe(uglify)
-        .pipe($.concat(filename))
-        .pipe(gulp.dest(paths.webroot + '/scripts/'));
-
-    // Iconic SVG icons
-    gulp.src('./bower_components/foundation-apps/iconic/**/*')
-        .pipe(gulp.dest(paths.webroot + '/img/iconic/'));
-        
-    gulp.src('bower_components/open-iconic/font/fonts/**/*')
-        .pipe(gulp.dest(paths.webroot + '/fonts/'));
-
-    cb();
 });
 
 // Compiles Sass
@@ -164,7 +132,7 @@ gulp.task('sass', function () {
             errLogToConsole: true
         }))
         .pipe($.autoprefixer({
-            browsers: ['last 2 versions', 'ie 10']
+            browsers: ['last 2 versions', 'ie >= 9']
         }))
         .pipe(minify)
         .pipe($.rename(filename))
@@ -188,7 +156,7 @@ gulp.task('css', function() {
 gulp.task('js', ['js:foundation', 'js:lib', 'js:app'])
 
 gulp.task('js:foundation', function (cb) {
-    var filename = (isProduction) ? 'foundation.min.js' : 'foundation.js';
+    var filename = (isProduction) ? 'foundation-sites.min.js' : 'foundation-sites.js';
     
     var uglify = $.if(isProduction, $.uglify()
     .on('error', function (e) {
@@ -254,8 +222,7 @@ gulp.task('server:production', ['deploy'], function () {
 
 // Builds your entire app once, without starting a server
 gulp.task('build', function (cb) {
-    //sequence('clean', ['copy', 'copy:foundation', 'sass', 'uglify'], 'copy:templates', cb);
-    sequence('clean', ['copy', 'copy:partials', 'copy:foundation', 'sass', 'css', 'js'], 'copy:templates', cb);
+    sequence('clean', ['copy', 'copy:partials', 'sass', 'css', 'js'], 'copy:templates', cb);
 });
 
 gulp.task('deploy', function (cb) {

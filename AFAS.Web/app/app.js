@@ -1,11 +1,25 @@
-var app = angular.module('afas.app', ['ui.router', 'ngAnimate', 'foundation', 'foundation.dynamicRouting', 'foundation.dynamicRouting.animations']);
+var app = angular.module('afas.app', ['ngRoute']);
 
-app.config(['$locationProvider', function ($locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'templates/home.html'
+            //controller: 'HomeController'
+        })
+        .when('/plan', {
+            templateUrl: 'templates/plan.html'
+        })
+        .when('/optimization', {
+            templateUrl: 'templates/optimization.html'
+        })
+        .when('/database', {
+            templateUrl: 'templates/database.html'
+        })
+        .otherwise({ redirectTo: '/' })
+    /*
     $locationProvider.html5Mode({
-        enabled:false,
+        enabled:true,
         requireBase: false
     });
-
-}]).run(function () {
-    FastClick.attach(document.body);
-});
+    */
+}])

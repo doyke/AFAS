@@ -6,28 +6,26 @@
     <title>Frequency and Spectrum Management Server</title>
     <link href="./styles/vendor.css" rel="stylesheet" type="text/css">
     <link href="./styles/app.css" rel="stylesheet" type="text/css">
-    <script src="./scripts/foundation.js"></script>
-    <script src="./scripts/templates.js"></script>
-    <script src="./scripts/routes.js"></script>
+    <script src="./scripts/foundation-sites.js"></script>
     <script src="./scripts/lib.js"></script>
     <script src="./scripts/app.js"></script>
 </head>
-<body>
-    <div class="header primary menu-group">
-        <div class="menu-group-left">
+<body >
+    <div class="top-bar">
+        <div class="top-bar-left">
         </div>
-        <div class="menu-group-right">
-            <ul class="primary condense menu-bar">
-                <li><a href="/#/plan"><b>Plan</b></a></li>
-                <li><a href="#"><b>Analysis</b></a></li>
-                <li><a href="/#/optimization"><b>Optimization</b></a></li>
-                <li><a href="/#/database"><b>Database</b></a></li>
+        <div class="top-bar-right">
+            <ul class="menu primary condense">
+                <li><a href="#/plan"><b>Plan</b></a></li>
+                <li><a href="#/"><b>Analysis</b></a></li>
+                <li><a href="#/optimization"><b>Optimization</b></a></li>
+                <li><a href="#/database"><b>Database</b></a></li>
             </ul>
         </div>
     </div>
     <div class="vertical">
         <div style="margin-bottom: 70px;"></div>
-        <div ui-view id="container"/>
+        <div data-ng-view></div>
     </div>
 </body>
 </html>
