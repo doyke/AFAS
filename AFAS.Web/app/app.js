@@ -7,13 +7,29 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             //controller: 'HomeController'
         })
         .when('/plan', {
-            templateUrl: 'templates/plan.html'
+            templateUrl: 'templates/plan.html',
+            controller: 'PlanController',
+            controllerAs: 'c'
         })
         .when('/optimization', {
-            templateUrl: 'templates/optimization.html'
+            templateUrl: 'templates/optimization.html',
+            controller: 'OptimizationController',
+            controllerAs: 'c'
+        })
+        .when('/optimization/resolve', {
+            templateUrl: 'templates/home.html',
+            controller: 'AssignmentController',
+            controllerAs: 'c',
+            resolve: {
+                data: ['$route', 'Data', function($route, Data) {
+                    return Data.get({ id: $route.current.params.id});
+                }]
+            }
         })
         .when('/database', {
-            templateUrl: 'templates/database.html'
+            templateUrl: 'templates/database.html',
+            controller: 'RadioController',
+            controllerAs: 'c'
         })
         .otherwise({ redirectTo: '/' })
     /*
