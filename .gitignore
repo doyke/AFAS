@@ -183,8 +183,8 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
-AFAS.Web/node_modules/
-AFAS.Web/bower_components/
+**/*node_modules/*
+**/*bower_components/*
 orleans.codegen.cs
 
 # RIA/Silverlight projects
