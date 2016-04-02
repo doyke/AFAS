@@ -44,7 +44,8 @@ var paths = {
     css: {
         includes: [
             './styles/**/*.css', // vendor css
-            'bower_components/open-iconic/font/css/open-iconic-foundation.css' // open-iconic
+            'bower_components/open-iconic/font/css/open-iconic-foundation.css', // open-iconic
+            'bower_components/open-sans-fontface/open-sans.css' // open-sans fontface
         ]
     },
     // Javascript
@@ -99,6 +100,9 @@ gulp.task('copy', function () {
     
     gulp.src('bower_components/open-iconic/font/fonts/**/*')
         .pipe(gulp.dest(paths.webroot + '/fonts/'));
+        
+    gulp.src('bower_components/open-sans-fontface/fonts/**/*')
+        .pipe(gulp.dest(paths.webroot + '/styles/fonts'));
     
     return gulp.src(paths.html.base)
         //.pipe(minHtml())

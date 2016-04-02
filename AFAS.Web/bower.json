@@ -27,7 +27,8 @@
     "d3": "^3.5.16",
     "Geolib": "geolib#^2.0.18",
     "mathjs": "^3.1.0",
-    "foundation-sites": "^6.2.0"
+    "foundation-sites": "^6.2.0",
+    "open-sans-fontface": "^1.4.2"
   },
   "devDependencies": {
     "motion-ui": "^1.2.2",
