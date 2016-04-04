@@ -38,14 +38,15 @@ var paths = {
         ],
         includes: [
             'bower_components/foundation-sites/scss', // foundation scss
-            'bower_components/motion-ui/src'
+            'bower_components/motion-ui/src',
+            'bower_components/open-sans-fontface/sass'
         ]
     },
     css: {
         includes: [
             './styles/**/*.css', // vendor css
             'bower_components/open-iconic/font/css/open-iconic-foundation.css', // open-iconic
-            'bower_components/open-sans-fontface/open-sans.css' // open-sans fontface
+            // 'bower_components/open-sans-fontface/open-sans.css' // open-sans fontface
         ]
     },
     // Javascript
