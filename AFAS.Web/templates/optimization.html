@@ -3,7 +3,7 @@
     <hr />
     <form>
         <div class="row column">
-            <h5>Add new radio :</h5>
+            <h5>1. Add new radio :</h5>
             <div class="row">
                 <div class="large-2 medium-2 columns">
                     <label>Identification</label>
@@ -11,85 +11,94 @@
                 </div>
                 <div class="large-2 medium-2 columns">
                     <label>Mode</label>
-                    <input type="text">
+                    <select name="" id="">
+                        <option value="">Select</option>
+                        <option value="AM">AM</option>
+                        <option value="Unknown">Unknown</option>
+                </select>
                 </div>
-                <div class="large-4 medium-4 columns">
+                <div class="large-3 medium-3 columns">
                     <label>Latitude</label>
                     <input type="number">
                 </div>
-                <div class="large-4 medium-4 columns">
+                <div class="large-3 medium-3 columns">
                     <label>Longitude</label>
                     <input type="number">
+                </div>
+                <div class="large-2 medium-2 columns">
+                    <label>Location</label>
+                    <input type="text">
                 </div>
             </div>
             <div class="button-group float-right">
                 <button type="button" class="secondary button">Reset</button>
                 <button type="button" class="button">Add</button>
             </div>
-            <div class="row small-up-1 medium-up-2 large-up-4">
+            <hr />
+            <h5>2. Manage radios :</h5>
+            <div class="row small-up-1 medium-up-2 large-up-4 large-centered">
                 <div class="column">
-                    <img src="//placehold.it/300x300" class="thumbnail" alt="">
+                    <div class="block">
+                        <div class="channel"><h2>X</h2></div>
+                        <div class="clearfix">
+                            <div class="float-left"><b>HYM</b> (13.245, 100.3290)</div>
+                            <div class="float-right"><a class="alert fi-circle-x" title="remove"></a></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="column">
-                    <img src="//placehold.it/300x300" class="thumbnail" alt="">
+                    <div class="block">
+                        <div class="channel"><h2>X</h2></div>
+                        <div class="clearfix">
+                            <div class="float-left"><b>HYM</b> (13.245, 100.3290)</div>
+                            <div class="float-right"><a class="alert fi-circle-x" title="remove"></a></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="column">
-                    <img src="//placehold.it/300x300" class="thumbnail" alt="">
+                    <div class="block">
+                        <div class="channel"><h2>X</h2></div>
+                        <div class="clearfix">
+                            <div class="float-left"><b>HYM</b> (13.245, 100.3290)</div>
+                            <div class="float-right"><a class="alert fi-circle-x" title="remove"></a></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="column">
-                    <img src="//placehold.it/300x300" class="thumbnail" alt="">
+            </div>
+            <hr/>
+            <h5>3. Optimization options :</h5>
+            <div class="row">
+                <div class="large-6 medium-6 columns">
+                    <div class="columns">
+                        <p>3.1 Pre-define a range of frequencies :</p>
+                    </div>
+                    <div class="large-1 medium-1 columns">
+                        <label for="from-label" class="text-right middle">From</label>
+                    </div>
+                    <div class="large-3 medium-3 columns">
+                        <input id="from-label" type="text">
+                    </div>
+                    <div class="large-1 medium-1 columns">
+                        <label for="to-label" class="text-right middle">To</label>
+                    </div>
+                    <div class="large-3 medium-3 columns end">
+                        <input id="to-label" type="text">
+                    </div>
                 </div>
-                <div class="column">
-                    <img src="//placehold.it/300x300" class="thumbnail" alt="">
-                </div>
-                <div class="column">
-                    <img src="//placehold.it/300x300" class="thumbnail" alt="">
+                <div class="large-6 medium-6 columns">
+                    <div class="columns">
+                        <p>3.2 Choose your performance option :</p>
+                    </div>
+                    <div class="columns">
+                        <input name="performance" type="radio">
+                        <label class="middle">Best</label>
+                        <input name="performance" type="radio">
+                        <label class="middle">Good</label>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <!-- div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Identification</th>
-                    <th>Mode</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Type</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="r in c.radios">
-                    <td>1</td>
-                    <td><input type="text" data-ng-model="r.ident" /></td>
-                    <td><input type="text" data-ng-model="r.mode" /></td>
-                    <td><input type="number" data-ng-model="r.latitude" /></td>
-                    <td><input type="number" data-ng-model="r.longitude" /></td>
-                    <td><input type="text" data-ng-model="r.type" /></td>
-                    <td>
-                        <a class="alert hollow button fi-trash" title="cancel" aria-hidden="true"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="text" data-ng-init="item.name=''" data-ng-model="item.name" /></td>
-                    <td><input type="text" data-ng-model="item.mode" /></td>
-                    <td><input type="number" data-ng-model="item.latitude" /></td>
-                    <td><input type="number" data-ng-model="item.longitude" /></td>
-                    <td><input type="text" data-ng-model="item.type" /></td>
-                    <td>
-                        <a class="hollow fi-plus" title="add" aria-hidden="true"></a>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody> 
-        </table>
-    </div -->
-    
     <!-- div data-ng-controller="TestGreedyController as c">
         <ul>
             <li data-ng-repeat="output in c.outputs">{{output}}</li>
