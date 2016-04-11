@@ -2,29 +2,35 @@
     <h3 class="text-center"><strong>RADIO FREQUENCY & SPECTRUM <span class="hi-light">DATABASE</span></strong></h3>
     <hr />
     <form>
-        <div class="grid-block align-center">
-            <label style="align-self: center;">Search</label>
-            <div class="grid-content small-3">
-                <input type="text" placeholder="all">
-            </div>
-            <label style="align-self: center;">Location</label>
-            <div class="grid-content small-3">
-                <select name="" id="">
-                    <option value="">anywhere</option>
-                    <option value="">Bangkok</option>
-                    <option value="">Ratchaburi</option>
-                    <option value="">Korat</option>
-                </select>
-            </div>
-            <div class="small-1">
-                <a href="#" class="success button">search</a>
+        <div class="row">
+            <div class="large-12 medium-12 columns">
+                <div class="large-2 medium-2 columns">
+                    <label for="search-label" class="text-right middle">Search</label>
+                </div>
+                <div class="large-3 medium-3 columns">
+                    <input id="search-label" type="text">
+                </div>
+                <div class="large-1 medium-1 columns">
+                    <label for="location-label" class="text-right middle">Location</label>
+                </div>
+                <div class="large-3 medium-3 columns">
+                    <select name="" id="">
+                        <option value="">anywhere</option>
+                        <option value="">Bangkok</option>
+                        <option value="">Ratchaburi</option>
+                        <option value="">Korat</option>
+                    </select>
+                </div>
+                <div class="large-1 medium-1 columns end">
+                    <a class="success button">search</a>
+                </div>                
             </div>
         </div>
     </form>
-    <p class="text-center">Total <b>124</b> frequencies. <b>51</b> frequencies assigned to <b>100</b> radio equipments.</p>
+    <p class="text-center">Total <b>{{ c.view.totalFrequencies }}</b> frequencies assigned to <b>{{ c.view.totalRadios }}</b> radio equipments.</p>
     <p class="text-center">
-        <a class="hi-light" href="">Add</a> new radios or locations.<br />
-        <a class="hi-light" href="">Assign</a> or <a class="hi-light" href="">reuse</a> more frequencies to existing radio equipments.
+        <a class="hi-light">Add</a> new radios or locations.<br />
+        <a class="hi-light">Assign</a> or <a class="hi-light">reuse</a> more frequencies to existing radio equipments.
     </p>
     <hr />
     <div data-ng-include="'./partials/radio-table.html'" />

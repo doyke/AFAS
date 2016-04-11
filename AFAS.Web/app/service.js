@@ -32,39 +32,12 @@
         return assignments;
     };
     
-    this.heatmap = function (data, svg, styles) {
-        var colorScale = d3.scale.quantile()
-            .domain([0, styles.buckets - 1, d3.max(data, function (d) {
-                return d.value;
-            })]).range(styles.colors);
-              
-        var cards = svg.selectAll(".x")
-            .data(data, function(d) {
-                return d.y+':'+d.x;
-            });
-        
-        cards.enter().append("rect")
-            .attr("x", function(d) { 
-                return (d.x - 1) * styles.gridSize;
-            })
-            .attr("y", function(d) {
-                return (d.y - 1) * styles.gridSize;
-            })
-            //.attr("rx", 2).attr("ry", 2)
-            .attr("class", "x bordered")
-            .attr("width", styles.gridSize).attr("height", styles.gridSize)
-            .style("fill", styles.colors[0]);
-        
-        cards.transition().duration(1000)
-            .style("fill", function(d) {
-                return colorScale(d.value);
-            });
-        
-        cards.select("title").text( function(d) {
-            return d.value;
-        });
-        
-        cards.exit().remove();
+    this.getRadioMode = function (value) {
+        return Mode.properties[value].name;
+    };
+    
+    this.getRadioType = function (value) {
+        return RadioType.properties[value].name;
     };
     
     return this;
