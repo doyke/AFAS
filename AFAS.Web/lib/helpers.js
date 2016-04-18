@@ -41,23 +41,3 @@ Helper.prototype.getCompatibilityValues = function (radios, contour) {
     }
     return compatabilities;
 }
-
-Helper.prototype.onJsonChanged = function (id, data) {
-    document.getElementById(id).addEventListener('change', handleFileSelect, false);
-    var handleFileSelect = function(evt) {
-        var files = evt.target.files;
-        for (var i = 0, f; f = files[i]; i++) {
-            var reader = new FileReader();
-            reader.onload = (function (theFile) {
-                return function(e) {
-                    try {
-                        data = JSON.parse(e.target.result);
-                    } catch (ex) {
-                        console.error(ex);
-                    }
-                }
-            })(f);
-            reader.readAsText(f);
-        }
-    }
-}
