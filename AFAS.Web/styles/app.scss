@@ -30,9 +30,9 @@
 @include foundation-off-canvas;
 @include foundation-orbit;
 @include foundation-pagination;
-@include foundation-progress-bar;
+// @include foundation-progress-bar;
 // @include foundation-progress-element;
-// @include foundation-meter-element;
+@include foundation-meter-element;
 @include foundation-slider;
 @include foundation-sticky;
 @include foundation-reveal;
@@ -50,10 +50,6 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
-body {
-    font-family: 'Open Sans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-}
-
 a {
     vertical-align: middle;
 }
@@ -62,12 +58,25 @@ a.alert {
    color: $alert-color;
 }
 
+.menu a {
+  color: $white;
+}
+.menu a:hover, a:focus {
+    color: $dark-gray;
+}
+
 .header {
     z-index: 200;
     position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
+}
+
+.template {
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 .block {
@@ -79,30 +88,37 @@ a.alert {
 
 .channel {
     background-color: #ccc;
-}
-
-.assigned {
-    background-color: #3adb76 !important;
+    padding: 0 5px 0 5px;
 }
 
 .reused {
+    font-weight: bold;
+    color: $black !important;
+    background-color: #3adb76 !important;
+}
+
+.assigned {
+    font-weight: bold;
+    color: $black !important;
     background-color: #ffae00 !important;
 }
 
 .failed {
+    font-weight: bold;
+    color: $white !important;
     background-color: #ec5840 !important;
 }
 
-.template {
-    display: block;
-    margin: 0 auto;
-}
 .menu-group-right {
     padding-right: 50px;
 }
 
 .menu-group-right ul li {
     border-left:1px solid #ccc;
+}
+
+.callout {
+    word-wrap: break-word;
 }
 
 .hi-light {
@@ -127,6 +143,16 @@ text.mono {
     fill: #aaa;
 }
 
+// Colors
+.mars {
+  color: map-get($foundation-palette, mars);
+}
+.neptune {
+  color: map-get($foundation-palette, neptune);
+}
+.saturn {
+  color: map-get($foundation-palette, saturn);
+}
 // Layout
 
 .padding-lr-1 {
