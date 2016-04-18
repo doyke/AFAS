@@ -7,6 +7,10 @@ app.factory('afas.mock', function () {
     for ( var f=18; f<59; f++ ) { frequencies.push(f); }
     for ( var f=71; f<127; f++ ) { frequencies.push(f); }
     
+    var civilFrequencies = [];
+    for ( var f=18; f<59; f+=2 ) { civilFrequencies.push(f); }
+    for ( var f=71; f<127; f++ ) { civilFrequencies.push(f); }
+    
     var locations = [
         new Location(1, 'BANGKOK/DONMUENG', 'VTBD'),
         new Location(2, 'BANGKOK/SUVARNABHUMI', 'VTBS'),
@@ -1159,7 +1163,12 @@ app.factory('afas.mock', function () {
     var resources = {
         "frequencies": {
             get : function () {
-                return frequencies;
+                return angular.copy(frequencies);
+            },
+        },
+        "civil-frequencies": {
+            get : function () {
+                return angular.copy(civilFrequencies);
             },
         },
         "radios": {
@@ -1168,7 +1177,7 @@ app.factory('afas.mock', function () {
                     return function (radio) {
                         radio.id === id
                     };
-                return radios
+                return angular.copy(radios)
             },
             create : function (newRadio) {
                 var maxId = Math.max.apply(Math,array.map(function(o) {
@@ -1180,7 +1189,7 @@ app.factory('afas.mock', function () {
         },
         "locations": {
             get : function () {
-                return locations;
+                return angular.copy(locations);
             },
             create : function (newLocation) {
                 var maxId = Math.max.apply(Math,array.map(function(o) {

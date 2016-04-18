@@ -1,6 +1,6 @@
 ﻿app.factory('afas.factory', ['$resource', '$http', '$q', function ($resource, $http, $q) {
     var service = {};
-    // api/newManageNodesApi/id
+    
     var resources = {
         "search": $resource('/Search/GetNodeData', {}, {
             get: {
@@ -222,8 +222,6 @@
         
         return radios
     }
-    
-    var randoms
 
     return service;
 }]);
