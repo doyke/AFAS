@@ -14,20 +14,23 @@ app.controller('RadioController', ['$scope', 'afas.service', 'afas.mock', functi
         }).length
     };
     
-    self.getRadioMode = function (value) {
+    var getRadioMode = function (value) {
         return Mode.properties[value].name;
     };
     
-    self.getRadioType = function (value) {
+    var getRadioType = function (value) {
         return RadioType.properties[value].name;
     };
     
     angular.forEach(radios, function (r, i) {
-        r.frequencyText = r.frequency + 'X';
-        r.coordinate = '( ' + r.latitude + ', ' + r.longitude + ' )';
-        r.mode = self.getRadioMode(r.mode);
-        r.type = self.getRadioType(r.type);
-        r.locationName = r.location.name;
-        self.view.radios.push(r);
+        self.view.radios.push({
+            id : r.id,
+            frequency: r.frequency + 'X',
+            ident: r.ident,
+            coordinate: '( ' + r.latitude + ', ' + r.longitude + ' )',
+            mode: getRadioMode(r.mode),
+            type: getRadioType(r.type),
+            location: r.location.name
+        });
     });
 }]);
