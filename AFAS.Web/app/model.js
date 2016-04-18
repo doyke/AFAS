@@ -45,3 +45,10 @@ Radio.prototype.locates = function locates(loc) {
     this.location = loc;
 }
 
+var RefAntenna = {
+    ISOTROPIC: 0,
+    properties: {
+        0: { name: 'Isotropic' }
+    }
+}
+
