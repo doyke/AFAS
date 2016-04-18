@@ -1,8 +1,7 @@
 app.controller('OptimizationController', ['$scope', '$location', 'afas.mock', 'afas.service', function($scope, $location, factory, service) {
     var data = service.confirmedData;
     var radios = factory.get("radios");
-    var helper = new Helper();
-    
+    var helper = new Helper();    
     var self = this;
     self.priorities = {
         0: { name:'high', style:'alert', value:0 },
@@ -22,7 +21,43 @@ app.controller('OptimizationController', ['$scope', '$location', 'afas.mock', 'a
         selectedPriority: self.priorities[2]
     }
     
-    helper.onJsonChanged('newUpload', radios)
+    $(document).ready(function(){
+        var onUploadNewRadios = function (evt) {
+            var f = evt.target.files[0];
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function(e) {
+                    try {
+                        $scope.$apply(function() {
+                            self.view.radios = JSON.parse(e.target.result);
+                        });
+                    } catch (ex) {
+                        console.error(ex);
+                    }
+                }
+            })(f);
+            reader.readAsText(f);
+        };
+        
+        var onUploadChannels = function (evt) {
+            var f = evt.target.files[0];
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function(e) {
+                    try {
+                        $scope.$apply(function() {
+                            self.view.channels = JSON.parse(e.target.result);
+                        });
+                    } catch (ex) {
+                        console.error(ex);
+                    }
+                }
+            })(f);
+            reader.readAsText(f);
+        };
+        $("#newUpload").change(onUploadNewRadios);
+        $("#channelsUpload").change(onUploadChannels);
+    });
     
     angular.forEach(factory.get("civil-frequencies"), function(f, i) {
         var ch = { frequency: f, priority: self.priorities[3] };

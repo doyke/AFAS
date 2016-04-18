@@ -34,7 +34,7 @@
             </div>
             <div class="button-group float-left">
                 <label for="newUpload" class="button">Upload File</label>
-                <input type="file" id="newUpload" class="show-for-sr" multiple>
+                <input type="file" id="newUpload" class="show-for-sr">
             </div>
             <div class="button-group float-right">
                 <button type="button" class="secondary button">Reset</button>
@@ -81,6 +81,10 @@
                     data-ng-class="ch.priority.style"
                     data-ng-repeat="ch in c.view.channels">{{ ch.frequency }}X
                 </button>
+            </div>
+            <div class="button-group float-left">
+                <label for="channelsUpload" class="button">Upload File</label>
+                <input type="file" id="channelsUpload" class="show-for-sr">
             </div>
             <hr/>
             <h5>4. Planning criteria :</h5>
