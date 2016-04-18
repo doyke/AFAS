@@ -63,6 +63,7 @@ var paths = {
             'bower_components/d3/d3.js',
             'bower_components/Geolib/dist/geolib.js',
             'bower_components/mathjs/dist/math.js',
+            'bower_components/lodash/dist/lodash.js',
             'lib/helpers.js',
             'lib/heatmaps.js',
             'lib/greedy.js'
@@ -75,6 +76,7 @@ var paths = {
             'app/plan.js',
             'app/radio.js',
             'app/optimization.js',
+            'app/confirmation.js',
             'app/test-greedy.js'
         ]
     }
