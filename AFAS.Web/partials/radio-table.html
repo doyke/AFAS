@@ -4,6 +4,12 @@
     <thead>
         <tr>
             <th>
+                <a href="" data-ng-click="c.view.sortType = 'id'; c.view.sortReverse = !c.view.sortReverse">ID 
+                    <span data-ng-show="c.view.sortType == 'id' && !c.view.sortReverse" class="fi-caret-bottom"></span>
+                    <span data-ng-show="c.view.sortType == 'id' && c.view.sortReverse" class="fi-caret-top"></span>
+                </a>
+            </th>
+            <th>
                 <a href="" data-ng-click="c.view.sortType = 'frequency'; c.view.sortReverse = !c.view.sortReverse">Frequency 
                     <span data-ng-show="c.view.sortType == 'frequency' && !c.view.sortReverse" class="fi-caret-bottom"></span>
                     <span data-ng-show="c.view.sortType == 'frequency' && c.view.sortReverse" class="fi-caret-top"></span>
@@ -40,18 +46,17 @@
     </thead>
     <tbody>
         <tr data-ng-repeat="r in filtered = (c.view.radios | orderBy:c.view.sortType:c.view.sortReverse | filter:searchRadio) ">
-            <td>{{ r.frequencyText }}</td>
+            <td>{{ r.id }}</td>
+            <td>{{ r.frequency }}</td>
             <td>{{ r.ident }}
             <td>{{ r.mode }}</td>
             <td>None</td>
             <td>{{ r.coordinate }}</td>
-            <td>{{ r.locationName }}</td>
+            <td>{{ r.location }}</td>
             <td>{{ r.type }}</td>
             <td>
-                <div class="button-group">
-                    <a class="hollow button fi-pencil" title="modify" aria-hidden="true"></a>
-                    <a class="alert hollow button fi-trash" title="remove" aria-hidden="true"></a>
-                </div>
+                <button class="hollow button fi-pencil" title="modify" aria-hidden="true"></button>
+                <button class="alert hollow button fi-trash" title="remove" aria-hidden="true"></button>
             </td>
         </tr>
     </tbody>
