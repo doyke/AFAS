@@ -32,12 +32,21 @@
         return assignments;
     };
     
-    this.getRadioMode = function (value) {
-        return Mode.properties[value].name;
-    };
+    this.getRefAntennaName = function (value) {
+        return RefAntenna.properties[value].name;
+    }
     
-    this.getRadioType = function (value) {
-        return RadioType.properties[value].name;
+    this.getUsedFrequencies = function (radios) {
+        return radios.map(function (r) {
+            return r.frequency;
+        })
+    }
+    
+    this.confirmedData = {
+        text: '',
+        channels: [],
+        refAntenna: null,
+        contour: 0
     };
     
     return this;
