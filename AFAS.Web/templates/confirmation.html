@@ -1,0 +1,51 @@
+<div class="template">
+    <div class="row column">
+        <h3>Confirmation</h3>
+        <p>Please confirm data before assignment</p>
+        <hr />
+        <h5>1. Radios</h5>
+        <div class="row small-up-1 medium-up-2 large-up-4 large-centered">
+            <div class="column" data-ng-repeat="r in c.view.radios">
+                <div class="block">
+                    <div class="channel clearfix">
+                        <div class="float-left stat">{{ r.ident }}</div>
+                        <div class="float-right stat">{{ r.frequency }}X</div>
+                    </div>
+                    <div>{{ r.location.name }} {{ c.getCoordinate(r) }}</div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <h5>2. Frequencies</h5>
+        <div>
+            <span class="block assigned">X</span><span style="margin-right: 20px"> - New</span>
+            <span class="block reused">X</span><span> - Reused </span>
+        </div>
+        <br>
+        <div>
+            <span class="block reused">12X</span>
+            <span class="block reused">13X</span>
+            <span class="block assigned">100X</span>
+            <span class="block assigned">114X</span>
+        </div>
+        <hr/>
+        <h5>3. Planning criteria</h5>
+        <p>3.1 Antenna Characteristics</p>
+        <div>Radiation pattern : <kbd>{{ c.view.refAntenna }}</kbd></div>
+        <div>Contour : <kbd>{{ c.view.contour }} NM</kbd></div>
+        <hr/>
+        <div class="clearfix">
+            <div class="float-left">Building compatibity matrix...</div>
+            <div class="float-right">25% completed</div>
+        </div>
+        <meter value="30" min="0" low="33" high="66" optimum="100" max="100" />
+        <div class="float-left">
+            <button type="button" class="button" data-ng-click="c.run()">Confirm and run</button>
+            <button type="button" class="secondary button">Cancel</button>
+        </div>
+        <hr />
+        <div class="callout secondary">
+            <p>{{ c.view.debug }}</p>
+        </div>
+    </div>
+</div>

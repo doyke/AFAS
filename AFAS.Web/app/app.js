@@ -16,6 +16,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             controller: 'OptimizationController',
             controllerAs: 'c'
         })
+        .when('/optimization/confirmation.html', {
+            templateUrl: 'templates/confirmation.html',
+            controller: 'ConfirmationController',
+            controllerAs: 'c'
+        })
         .when('/optimization/resolve', {
             templateUrl: 'templates/home.html',
             controller: 'AssignmentController',
