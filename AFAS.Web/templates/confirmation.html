@@ -17,17 +17,25 @@
         </div>
         <hr/>
         <h5>2. Frequencies</h5>
+        <hr/>
         <div>
-            <span class="block assigned">X</span><span style="margin-right: 20px"> - New</span>
-            <span class="block reused">X</span><span> - Reused </span>
+            <button class="button" type="button" style="margin-right: 5px"
+                data-ng-class="ch.priority.style"
+                data-ng-repeat="ch in c.view.channels">{{ ch.frequency }}X
+            </button>
         </div>
-        <br>
+        <!-- div>
+            <button class="button" type="button" style="margin-right: 5px"
+                data-ng-class="ch.priority.style"
+                data-ng-repeat="ch in c.view.channels">{{ ch.frequency }}X
+            </button>
+        </div>
         <div>
-            <span class="block reused">12X</span>
-            <span class="block reused">13X</span>
-            <span class="block assigned">100X</span>
-            <span class="block assigned">114X</span>
-        </div>
+            <button class="button" type="button" style="margin-right: 5px"
+                data-ng-class="ch.priority.style"
+                data-ng-repeat="ch in c.view.channels">{{ ch.frequency }}X
+            </button>
+        </div -->
         <hr/>
         <h5>3. Planning criteria</h5>
         <p>3.1 Antenna Characteristics</p>
@@ -45,7 +53,16 @@
         </div>
         <hr />
         <div class="callout secondary">
-            <p>{{ c.view.debug }}</p>
+            <p>{{ c.view.debug0 }}</p>
+        </div>
+        <div class="callout secondary">
+            <p>{{ c.view.debug1 }}</p>
+        </div>
+        <div class="callout secondary">
+            <p>{{ c.view.debug2 }}</p>
+        </div>
+        <div class="callout secondary">
+            <p>{{ c.view.debug3 }}</p>
         </div>
     </div>
 </div>

@@ -14,11 +14,14 @@ var Greedy = function () {
         for (var j=c; j<size; j++) {
             for (var i=c; i<size; i++) {
                 if (i != j) {
-                    C[i][j] = C[j][i] = data[pointer++];
+                    var d = data[pointer++];
+                    C[i][j] = d;
+                    C[j][i] = d;
                 }
             }
             c++;
         }
+        console.log(pointer + '-->' + data.length);
         return C;
     };
     
@@ -34,9 +37,13 @@ var Greedy = function () {
                 slots.push({ iteration: i, degree: deg });
             }
         }
-        return sort(slots, 'degree').map( function (o) {
+        
+        slots = sort(slots, 'iteration').reverse();
+        slots = sort(slots, 'degree');
+        
+        return slots.map( function (o) {
             return o.iteration;
-        });
+        }).reverse();
     };
 }
 
@@ -57,8 +64,6 @@ Greedy.prototype.solve = function (A, C, F) {
     var self = this;
     var L = self.min_degree_assignment(A, C);
     var result = Infinity;
-    var cost = 0;
-    var costs = [];
     
     for (var i in L) {
         costs = [];

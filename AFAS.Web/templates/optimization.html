@@ -61,13 +61,13 @@
                 </div>
                 <div class="float-right">
                     <a class="alert button" data-ng-class="{'hollow':c.view.selectedPriority.value!=0}" data-ng-click="c.view.selectedPriority=c.priorities[0];">
-                        High ({{c.countChannels(c.priorities[0])}})
+                        High ({{ c.countChannels(c.priorities[0]) }})
                     </a>
                     <a class="warning button" data-ng-class="{'hollow':c.view.selectedPriority.value!=1}" data-ng-click="c.view.selectedPriority=c.priorities[1];">
-                        Medium ({{c.countChannels(c.priorities[1])}})
+                        Medium ({{ c.countChannels(c.priorities[1]) }})
                     </a>
                     <a class="button" data-ng-class="{'hollow':c.view.selectedPriority.value!=2}" data-ng-click="c.view.selectedPriority=c.priorities[2];">
-                        Low ({{c.countChannels(c.priorities[2])}})
+                        Low ({{ c.countChannels(c.priorities[2]) }})
                     </a>
                     <a class="secondary button" data-ng-class="{'hollow':c.view.selectedPriority.value!=3}" data-ng-click="c.view.selectedPriority=c.priorities[3];">
                         Cancel
@@ -85,6 +85,9 @@
             <div class="button-group float-left">
                 <label for="channelsUpload" class="button">Upload File</label>
                 <input type="file" id="channelsUpload" class="show-for-sr">
+            </div>
+            <div>
+                <button class="button" type="button" data-ng-click="c.print(c.view.channels)">JSON</button>
             </div>
             <hr/>
             <h5>4. Planning criteria :</h5>

@@ -18,10 +18,13 @@ app.controller('OptimizationController', ['$scope', '$location', 'afas.mock', 'a
         selectedUsedFrequencies: [],
         refAntenna: null,
         contour: 0,
-        selectedPriority: self.priorities[2]
+        selectedPriority: self.priorities[2],
+        highCount: 0,
+        mediumCount: 0,
+        lowCount: 0,
     }
     
-    $(document).ready(function(){
+    $(document).ready(function() {
         var onUploadNewRadios = function (evt) {
             var f = evt.target.files[0];
             var reader = new FileReader();
@@ -38,7 +41,6 @@ app.controller('OptimizationController', ['$scope', '$location', 'afas.mock', 'a
             })(f);
             reader.readAsText(f);
         };
-        
         var onUploadChannels = function (evt) {
             var f = evt.target.files[0];
             var reader = new FileReader();
@@ -47,6 +49,7 @@ app.controller('OptimizationController', ['$scope', '$location', 'afas.mock', 'a
                     try {
                         $scope.$apply(function() {
                             self.view.channels = JSON.parse(e.target.result);
+                            self.view.channels = _.sortBy(self.view.channels, ['frequency']);
                         });
                     } catch (ex) {
                         console.error(ex);
@@ -63,6 +66,10 @@ app.controller('OptimizationController', ['$scope', '$location', 'afas.mock', 'a
         var ch = { frequency: f, priority: self.priorities[3] };
         self.view.channels.push(ch);
     });
+    
+    self.print = function (data) {
+        console.log(JSON.stringify(angular.copy(data)));
+    }
     
     self.addNewRadio = function (radio) {
         radio.frequency = 0;
