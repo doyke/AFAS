@@ -7,8 +7,8 @@ app.factory('afas.mock', function () {
     for ( var f=18; f<59; f++ ) { frequencies.push(f); }
     for ( var f=71; f<127; f++ ) { frequencies.push(f); }
     
-    var civilFrequencies = [];
-    for ( var f=18; f<59; f+=2 ) { civilFrequencies.push(f); }
+    var civilFrequencies = [18];
+    for ( var f=19; f<59; f+=2 ) { civilFrequencies.push(f); }
     for ( var f=71; f<127; f++ ) { civilFrequencies.push(f); }
     
     var locations = [
