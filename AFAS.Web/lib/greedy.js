@@ -9,19 +9,19 @@ var Greedy = function () {
     };
     
     self.get_compatibility_matrix = function (data, size) {
-        var C = math.zeros([size,size]);
+        var C = Array(size);
+        for (var i = 0; i < size; i++) {
+            C[i] = Array(size).fill(0);
+        }
         var pointer = 0, c = 0;
         for (var j=c; j<size; j++) {
             for (var i=c; i<size; i++) {
                 if (i != j) {
-                    var d = data[pointer++];
-                    C[i][j] = d;
-                    C[j][i] = d;
+                    C[i][j] = C[j][i] = data[pointer++];
                 }
             }
             c++;
         }
-        console.log(pointer + '-->' + data.length);
         return C;
     };
     
